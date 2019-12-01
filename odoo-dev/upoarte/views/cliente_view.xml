@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_cliente_form">
+			<field name="name">Clientes</field>
+			<field name="model">upoarte.cliente</field>
+			<field name="arch" type="xml">
+				<form string="Formulario Clientes">
+					<group string="Cliente">
+              			<group string="Datos personales" col="2">
+              				<field name="name" />  
+             				<field name="nombre" />  
+             				<field name="apellidos" /> 
+             				<field name="direccion" /> 
+             				<field name="telefono" /> 
+             			</group>	
+              			<notebook colspan="4">
+             				<page string="Ventas">
+             					<group col="2">
+             						<field name="venta_ids"> 
+              							<tree>
+              								<field name="name" />
+											<field name="producto_ids" />
+											<field name="precioTotalVenta" />
+              							</tree>
+              						</field>
+              					</group>
+             				</page>	
+             				<page string="Alquileres">
+             					<group>
+             						<field name="alquiler_ids"> 
+              							<tree>
+              								<field name="name" />
+              								<field name="fechaInicioAlquiler" />
+              								<field name="fechaFinAlquiler" />
+					            			<field name="producto_ids" />
+					            			<field name="precioTotalAlquiler" />
+              							</tree>
+              						</field>
+             					</group>
+             				</page>
+             				<page string="Enmarcados">
+             					<group>
+             						<field name="enmarcado_ids"> 
+              							<tree>
+              								<field name="name" />
+              								<field name="cuadro_id" />
+              								<field name="marco_id" />
+					            			<field name="empleado_ids" />
+					            			<field name="precioTotalEnmarcado" />
+              							</tree>
+              						</field>
+             					</group>
+             				</page>
+             			</notebook>		
+					</group>
+				</form>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="upoarte_cliente_tree">
+			<field name="name">view_upoarte_cliente_tree</field>
+			<field name="model">upoarte.cliente</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Clientes">
+					<field name="name" />  
+             		<field name="nombre" />  
+             		<field name="apellidos" />  
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_cliente" model="ir.actions.act_window">
+			<field name="name">Clientes</field>
+			<field name="res_model">upoarte.cliente</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem name="Clientes" id="cliente_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver clientes" id="cliente_submenu_2"
+			parent="cliente_submenu" sequence="100" action="act_cliente"/>
+	</data>
+</odoo> 

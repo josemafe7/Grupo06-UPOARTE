@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_alquiler_form">
+			<field name="name">Alquileres</field>
+			<field name="model">upoarte.alquiler</field>
+			<field name="arch" type="xml">
+				<form string="Formulario Alquileres">
+					<group string="Alquiler">
+              			<field name="name" />
+              			<field name="fechaInicioAlquiler" />
+              			<field name="fechaFinAlquiler" />
+            			<field name="cliente_id" />	
+            			<field name="producto_ids" />
+            			<field name="empleado_id" />	
+            			<field name="precioTotalAlquiler" />	
+					</group>
+				</form>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="upoarte_alquiler_tree">
+			<field name="name">view_upoarte_alquiler_tree</field>
+			<field name="model">upoarte.alquiler</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Alquileres">
+					<field name="name" />
+              		<field name="fechaInicioAlquiler" />
+              		<field name="fechaFinAlquiler" />
+            		<field name="cliente_id" />	
+            		<field name="producto_ids" />
+            		<field name="precioTotalAlquiler" />  
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Calendar View -->
+		<record model="ir.ui.view" id="upoarte_alquiler_calendar">
+			<field name="name">view_upoarte_alquiler_calendar</field>
+			<field name="model">upoarte.alquiler</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+				<calendar string="Clases" color="cliente_id" date_start="fechaInicioAlquiler" date_stop="fechaFinAlquiler" mode="month">
+					<field name="cliente_id" />
+					<field name="precioTotalAlquiler" />
+				</calendar>
+			</field>
+		</record>
+		
+		<!-- Search View -->
+		<record model="ir.ui.view" id="upoarte_alquiler_search">
+			<field name="name">view_upoarte_alquiler_search</field>
+			<field name="model">upoarte.alquiler</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Alquiler">
+					<filter string="Precio >1000" domain="[('precioTotalAlquiler','>',1000)]" />
+					<separator orientation="vertical" />
+				</search>
+			</field>
+		</record>
+		
+
+		<record id="act_alquiler" model="ir.actions.act_window">
+			<field name="name">Alquileres</field>
+			<field name="res_model">upoarte.alquiler</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="search_view_id" ref="upoarte_alquiler_search"/>
+		</record>
+		<menuitem name="Alquileres" id="alquiler_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver alquileres" id="alquiler_submenu_2"
+			parent="alquiler_submenu" sequence="100" action="act_alquiler"/>
+	</data>
+</odoo> 

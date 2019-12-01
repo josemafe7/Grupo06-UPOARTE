@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_pedido_form">
+			<field name="name">Pedidos</field>
+			<field name="model">upoarte.pedido</field>
+			<field name="arch" type="xml">
+				<form string="Formulario Pedidos">
+					<group string="Pedido">
+						<field name="idPedido" />
+						<field name="fecha" />
+						<field name="proveedor_id" />
+						<field name="producto_ids" />
+						<field name="empleado_id" />
+					</group>
+				</form>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="upoarte_pedido_tree">
+			<field name="name">view_upoarte_pedido_tree</field>
+			<field name="model">upoarte.pedido</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Pedidos">
+					<field name="idPedido" />
+					<field name="fecha" />
+					<field name="proveedor_id" />
+					<field name="producto_ids" />
+					<field name="empleado_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_pedido" model="ir.actions.act_window">
+			<field name="name">Pedidos</field>
+			<field name="res_model">upoarte.pedido</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem name="Pedidos" id="pedido_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver pedidos" id="pedido_submenu_2"
+			parent="pedido_submenu" sequence="100" action="act_pedido"/>
+	</data>
+</odoo> 

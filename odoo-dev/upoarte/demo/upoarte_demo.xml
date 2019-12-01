@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="venta01" model="upoarte.venta">
+			<field name="name">1</field>
+			<field name="cliente_id" ref="cliente01"></field>
+			<field name="producto_ids" eval="[(6, 0, [producto01, producto02 ])]" ></field>
+			<field name="empleado_id" ref="empleado01"></field>
+			<field name="precioTotalVenta">900</field>
+		</record>
+		<record id="venta02" model="upoarte.venta">
+			<field name="name">2</field>
+			<field name="precioTotalVenta">100</field>
+		</record>
+		<record id="alquiler01" model="upoarte.alquiler">
+			<field name="name">1</field>
+			<field name="fechaInicioAlquiler">16/11/2019</field>
+			<field name="fechaFinAlquiler">16/12/2019</field>
+			<field name="precioTotalAlquiler">2000</field>
+		</record>
+		<record id="alquiler02" model="upoarte.alquiler">
+			<field name="name">2</field>
+			<field name="fechaInicioAlquiler">21/11/2019</field>
+			<field name="fechaFinAlquiler">1/12/2019</field>
+			<field name="precioTotalAlquiler">350</field>
+		</record>
+		<record id="enmarcado01" model="upoarte.enmarcado">
+			<field name="name">1</field>
+			<field name="precioTotalEnmarcado">900</field>
+		</record>
+		<record id="cliente01" model="upoarte.cliente">
+			<field name="name">31023029L</field>
+			<field name="nombre">Manuel</field>
+			<field name="apellidos">Herrera Pulido</field>
+			<field name="direccion">Pruna</field>
+			<field name="telefono">655444333</field>
+		</record>
+		<record id="cliente02" model="upoarte.cliente">
+			<field name="name">21023029U</field>
+			<field name="nombre">Daniel</field>
+			<field name="apellidos">Barciela Rueda</field>
+			<field name="direccion">La Línea</field>
+			<field name="telefono">955444533</field>
+			<field name="venta_ids" eval="[(6, 0, [venta01 ])]" ></field>
+		</record>
+		<record id="empleado01" model="upoarte.empleado">
+			<field name="name">12345678Y</field>
+			<field name="nombre">Vinicius</field>
+			<field name="apellidos">Junior</field>
+			<field name="direccion">Brazil</field>
+			<field name="telefono">655447633</field>
+			<field name="sueldo">1500</field>
+			<field name="venta_ids" eval="[(6, 0, [venta01 ])]" ></field>
+		</record>
+		<record id="empleado02" model="upoarte.empleado">
+			<field name="name">12345678I</field>
+			<field name="nombre">Joaquín</field>
+			<field name="apellidos">Sánchez</field>
+			<field name="direccion">El Hormiguero</field>
+			<field name="telefono">855444533</field>
+			<field name="sueldo">3000</field>
+		</record>
+		<record id="proveedor01" model="upoarte.proveedor">
+			<field name="name">31025029L</field>
+			<field name="nombre">José Manuel</field>
+			<field name="apellidos">Fernández Labrador</field>
+			<field name="direccion">Puente Genil</field>
+			<field name="telefono">625444333</field>
+		</record>
+		<record id="pedido01" model="upoarte.pedido">
+			<field name="idPedido">1</field>
+			<field name="fecha">16/11/2019</field>
+		</record>
+		<record id="pedido02" model="upoarte.pedido">
+			<field name="idPedido">2</field>
+			<field name="fecha">14/11/2019</field>
+		</record>
+		<record id="producto01" model="upoarte.producto">
+			<field name="name">1</field>
+			<field name="nombre">Picasso</field>
+			<field name="precio">300</field>
+			<field name="venta_ids" eval="[(6, 0, [venta01 ])]" ></field>
+		</record>
+		<record id="producto02" model="upoarte.producto">
+			<field name="name">2</field>
+			<field name="nombre">Barroco</field>
+			<field name="precio">500</field>
+			<field name="venta_ids" eval="[(6, 0, [venta01 ])]" ></field>
+		</record>
+		
+	</data>
+</odoo>

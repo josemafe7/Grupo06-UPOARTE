@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_proveedor_form">
+			<field name="name">Proveedores</field>
+			<field name="model">upoarte.proveedor</field>
+			<field name="arch" type="xml">
+				<form string="Formulario Proveedores">
+					<group string="Proveedor">
+              			<group string="Datos personales" col="2">
+              				<field name="name" />  
+             				<field name="nombre" />  
+             				<field name="apellidos" /> 
+             				<field name="direccion" /> 
+             				<field name="telefono" /> 
+             			</group>	
+              			<notebook colspan="4">
+             				<page string="Pedidos">
+             					<group col="2">
+             						<field name="pedido_ids"> 
+              							<tree>
+              								<field name="idPedido" />
+											<field name="fecha" />
+											<field name="producto_ids" />
+              							</tree>
+              						</field>
+              					</group>
+             				</page>	
+             			</notebook>		
+					</group>
+				</form>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="upoarte_proveedor_tree">
+			<field name="name">view_upoarte_proveedor_tree</field>
+			<field name="model">upoarte.proveedor</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Proveedores">
+					<field name="name" />  
+             		<field name="nombre" />  
+             		<field name="apellidos" />  
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_proveedor" model="ir.actions.act_window">
+			<field name="name">Proveedores</field>
+			<field name="res_model">upoarte.proveedor</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem name="Proveedores" id="proveedor_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver proveedores" id="proveedor_submenu_2"
+			parent="proveedor_submenu" sequence="100" action="act_proveedor"/>
+	</data>
+</odoo> 
