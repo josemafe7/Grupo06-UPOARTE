@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_producto_form">
+			<field name="name">Productos</field>
+			<field name="model">upoarte.producto</field>
+			<field name="arch" type="xml">
+				<form string="Formulario productos">
+					<group string="Producto">
+              			<group col="2">
+              				<field name="name" />  
+             				<field name="nombre" />  
+             				<field name="precio" /> 
+             			</group>	
+              			<notebook colspan="4">
+             				<page string="Ventas">
+             					<group col="2">
+             						<field name="venta_ids"> 
+              							<tree>
+              								<field name="name" />
+											<field name="cliente_id" />
+											<field name="precioTotalVenta" />
+              							</tree>
+              						</field>
+              					</group>
+             				</page>
+             				<page string="Alquileres">
+             					<group col="2">
+             						<field name="alquiler_ids"> 
+              							<tree>
+              								<field name="name" />
+					              			<field name="fechaInicioAlquiler" />
+					              			<field name="fechaFinAlquiler" />
+					            			<field name="cliente_id" />
+					            			<field name="precioTotalAlquiler" />
+              							</tree>
+              						</field>
+              					</group>
+             				</page>	
+             				<page string="Pedidos">
+             					<group col="2">
+             						<field name="pedido_ids"> 
+              							<tree>
+              								<field name="idPedido" />
+											<field name="fecha" />
+											<field name="proveedor_id" />
+											<field name="precioTotalPedido" />
+              							</tree>
+              						</field>
+              					</group>
+             				</page>		
+             			</notebook>		
+					</group>
+				</form>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="upoarte_producto_tree">
+			<field name="name">view_upoarte_producto_tree</field>
+			<field name="model">upoarte.producto</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de productos">
+					<field name="name" />  
+             		<field name="nombre" />  
+             		<field name="precio" />   
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_producto" model="ir.actions.act_window">
+			<field name="name">Productos</field>
+			<field name="res_model">upoarte.producto</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem name="Productos" id="producto_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver productos" id="producto_submenu_2"
+			parent="producto_submenu" sequence="100" action="act_producto"/>
+	</data>
+</odoo> 

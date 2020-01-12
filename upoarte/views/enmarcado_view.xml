@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_enmarcado_form">
+			<field name="name">Enmarcados</field>
+			<field name="model">upoarte.enmarcado</field>
+			<field name="arch" type="xml">
+				<form string="Formulario Enmarcados">
+					<group string="Enmarcado">
+						<field name="name" />
+						<field name="cliente_id" /> 
+						<field name="cuadro_id" />   
+						<field name="marco_id" />
+						<field name="empleado_ids" />  
+						<field name="precioTotalEnmarcado" />        							
+					</group>
+					<newline></newline>
+					<button name="borrarEmpleados" string="Limpiar Empleados" type="object"></button>
+				</form>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="upoarte_enmarcado_tree">
+			<field name="name">view_upoarte_enmarcado_tree</field>
+			<field name="model">upoarte.enmarcado</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Enmarcados">
+					<field name="name" />
+					<field name="precioTotalEnmarcado" /> 
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Graph View -->
+		<record model="ir.ui.view" id="upoarte_enmarcado_graph">
+			<field name="name">Enmarcados</field>
+			<field name="model">upoarte.enmarcado</field>
+			<field name="arch" type="xml">
+				<graph string="Enmarcados de clientes" type="bar">
+					<field name="cliente_id" type="row"/>
+					<field name="precioTotalEnmarcado" type="measure"/>
+				</graph>
+			</field>
+		</record>
+
+		<record id="act_enmarcado" model="ir.actions.act_window">
+			<field name="name">Enmarcados</field>
+			<field name="res_model">upoarte.enmarcado</field>
+			<field name="view_mode">tree,form,graph</field>
+		</record>
+		<menuitem id="upoarte" name="UPOARTE" action="act_enmarcado" />
+		<menuitem name="Enmarcados" id="enmarcado_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver enmarcados" id="enmarcado_submenu_2"
+			parent="enmarcado_submenu" sequence="100" action="act_enmarcado" />
+	</data>
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_pedido_form">
+			<field name="name">Pedidos</field>
+			<field name="model">upoarte.pedido</field>
+			<field name="arch" type="xml">
+				<form string="Formulario Pedidos">
+					<header>
+        				<button name="btn_submit_to_confirmado" string="Confirmar" type="object" class="oe_highlight" states="borrador"/>
+        				<button name="btn_submit_to_enviado" string="Enviar" type="object" class="oe_highlight" states="confirmado" />
+        				<button name="btn_submit_to_rechazado" string="Rechazar" type="object" class="oe_highlight" states="confirmado"/>
+        				<button name="btn_submit_to_rechazado" string="Rechazar" type="object" class="oe_highlight" states="enviado"/>
+        				<field name='state' widget='statusbar' />
+        			</header>
+					<group string="Pedido">
+						<field name="idPedido" />
+						<field name="fecha" />
+						<field name="proveedor_id" />
+						<field name="producto_ids" />
+						<field name="empleado_id" />
+						<field name="precioTotalPedido" />
+					</group>
+				</form>
+			</field>
+		</record>
+		
+
+		<record model="ir.ui.view" id="upoarte_pedido_tree">
+			<field name="name">view_upoarte_pedido_tree</field>
+			<field name="model">upoarte.pedido</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Pedidos">
+					<field name="idPedido" />
+					<field name="fecha" />
+					<field name="proveedor_id" />
+					<field name="producto_ids" />
+					<field name="empleado_id" />
+					<field name="precioTotalPedido" />
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Search View -->
+		<record model="ir.ui.view" id="upoarte_pedido_search">
+			<field name="name">upoarte_pedido_search</field>
+			<field name="model">upoarte.pedido</field>
+			<field name="arch" type="xml">
+				<search string="Pedido">
+					<filter string="Pedidos con precio >5000 €" domain="[('precioTotalPedido','>',5000)]" />
+					<separator orientation="vertical" />
+					<field name="idPedido"/>
+            		<group expand="0" string="Agrupar por…">
+                		<filter name="group_by_empleado" string="Empleado" context="{'group_by':'empleado_id'}"/> 
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="act_pedido" model="ir.actions.act_window">
+			<field name="name">Pedidos</field>
+			<field name="res_model">upoarte.pedido</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem name="Pedidos" id="pedido_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver pedidos" id="pedido_submenu_2"
+			parent="pedido_submenu" sequence="100" action="act_pedido"/>
+	</data>
+</odoo> 

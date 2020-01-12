@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upoarte_venta_form">
+			<field name="name">Ventas</field>
+			<field name="model">upoarte.venta</field>
+			<field name="arch" type="xml">
+				<form string="Formulario Ventas">
+					<group string="Venta">
+						<field name="name" />
+						<field name="cliente_id" /> 
+						<field name="producto_ids" /> 
+						<field name="empleado_id" />     
+						<field name="precioTotalVenta" />      							
+					</group>
+					<newline></newline>
+					<button name="borrarProductos" string="Limpiar Productos" type="object"></button>  
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="upoarte_venta_tree">
+			<field name="name">view_upoarte_venta_tree</field>
+			<field name="model">upoarte.venta</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Ventas">
+					<field name="name" />
+					<field name="cliente_id" /> 
+					<field name="producto_ids" /> 
+					<field name="precioTotalVenta" /> 
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Graph View -->
+		<record model="ir.ui.view" id="upoarte_venta_graph">
+			<field name="name">Ventas</field>
+			<field name="model">upoarte.venta</field>
+			<field name="arch" type="xml">
+				<graph string="Compras de clientes" type="bar">
+					<field name="cliente_id" type="row"/>
+					<field name="precioTotalVenta" type="measure"/>
+				</graph>
+			</field>
+		</record>
+		
+		<!-- Search View -->
+		<record model="ir.ui.view" id="upoarte_venta_search">
+			<field name="name">upoarte_venta_search</field>
+			<field name="model">upoarte.venta</field>
+			<field name="arch" type="xml">
+				<search string="Venta">
+					<filter string="Precio >1000" domain="[('precioTotalVenta','>',1000)]" />
+					<separator orientation="vertical" />
+					<field name="name"/>
+            		<group expand="0" string="Agrupar por…">
+                		<filter name="group_by_empleado" string="Empleado" context="{'group_by':'empleado_id'}"/> 
+					</group>
+				</search>
+			</field>
+		</record>
+		
+
+		<record id="act_venta" model="ir.actions.act_window">
+			<field name="name">Ventas</field>
+			<field name="res_model">upoarte.venta</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="search_view_id" ref="upoarte_venta_search"/>
+		</record>
+		<menuitem id="upoarte" name="UPOARTE" action="act_venta" />
+		<menuitem name="Ventas" id="venta_submenu" parent="upoarte"
+			sequence="100" />
+		<menuitem name="Ver ventas" id="venta_submenu_2"
+			parent="venta_submenu" sequence="100" action="act_venta" />
+	</data>
+</odoo> 
